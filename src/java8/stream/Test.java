@@ -1,9 +1,10 @@
 package java8.stream;
 
-import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class Test {
     
@@ -14,19 +15,45 @@ public class Test {
         
 //        System.out.println(t.getNameLength());
         
-        for (String[] s : t.getWordChar()) {
-            for (String string : s) {
-                System.out.print(string);
-            }
-            System.out.println();
-        }
+//        t.getWordChar().stream().forEach(System.out::print);
+//        t.getDoubleInt().stream().forEach(System.out::print);
+//        t.getPairNum().stream().forEach(nums -> System.out.println(nums[0] + "," + nums[1]));
+        t.getPairNum().stream().forEach(Test::printNumArr);
     }
     
-    public List<String[]> getWordChar() {
+    public static void printNumArr(int[] nums) {
+        System.out.println(nums[0]);
+        Arrays.asList(nums).stream()
+            .forEach(System.out::print);
+        System.out.println();
+    }
+    
+    public List<int[]> getPairNum() {
+        List<Integer> nums1 = Arrays.asList(1,2,3);
+        List<Integer> nums2 = Arrays.asList(1,2,3);
+        
+        return nums1.stream()
+            .flatMap(i -> nums2.stream().map(j -> new int[]{i,j})) // nums2.map() 은 중간연산인데 값이 저장되나?
+            .collect(toList());
+    }
+    
+    /**
+     * 5-2-1
+     * @return
+     */
+    public List<Integer> getDoubleInt() {
+        List<Integer> nums = Arrays.asList(1,2,3,4,5);
+        return nums.stream()
+            .map(n->n*n)
+            .collect(toList());
+    }
+    
+    public List<String> getWordChar() {
         String[] word = {"Hello","World"};
         
         return Arrays.asList(word).stream()
             .map(w -> w.split(""))
+            .flatMap(Arrays::stream)
             .distinct()
             .collect(toList());
     }
