@@ -22,7 +22,6 @@ public class Test {
     }
     
     public static void printNumArr(int[] nums) {
-        System.out.println(nums[0]);
         Arrays.asList(nums).stream()
             .forEach(System.out::print);
         System.out.println();
