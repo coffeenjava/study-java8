@@ -21,7 +21,12 @@ public class Shop {
         Discount.Code code = Discount.Code.values()[random.nextInt(Discount.Code.values().length)];
         return name + ":" + price + ":" + code;
     }
-
+    
+    public double getDblPrice(String product) {
+        System.out.println("getDblPrice =>> "+Thread.currentThread()+name);
+        return calculatePrice(product);
+    }
+    
     public double calculatePrice(String product) {
         delay();
         return format(random.nextDouble() * product.charAt(0) + product.charAt(1));

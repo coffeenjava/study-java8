@@ -12,10 +12,14 @@ public class Util {
 
     private static final Random RANDOM = new Random(0);
     private static final DecimalFormat formatter = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US));
+    
+    private static int order = 0;
 
     public static void delay() {
-        int delay = 1000;
-        //int delay = 500 + RANDOM.nextInt(2000);
+//        int delay = 1000;
+        int delay = 10000;
+        if (order < 8) delay = 500 + RANDOM.nextInt(2000);
+        order++;
         try {
             Thread.sleep(delay);
         } catch (InterruptedException e) {

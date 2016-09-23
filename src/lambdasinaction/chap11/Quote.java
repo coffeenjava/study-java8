@@ -17,6 +17,7 @@ public class Quote {
         String shopName = split[0];
         double price = Double.parseDouble(split[1]);
         Discount.Code discountCode = Discount.Code.valueOf(split[2]);
+        System.out.println("parse ---> "+shopName);
         return new Quote(shopName, price, discountCode);
     }
 

@@ -19,6 +19,7 @@ public class ExchangeService {
     }
 
     private static double getRateWithDelay(Money source, Money destination) {
+        System.out.println("Rate =>> "+Thread.currentThread());
         delay();
         return destination.rate / source.rate;
     }
