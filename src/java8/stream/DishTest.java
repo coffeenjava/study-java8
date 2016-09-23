@@ -14,7 +14,15 @@ public class DishTest {
 //        List<Dish> dishes = t.getFirstTwoMeat();
 //        System.out.println(dishes);
         
-        t.countDish();
+        t.checkMiddleCalculate();
+    }
+    
+    public void checkMiddleCalculate() {
+        Dish.menu.stream()
+            .map(d -> {
+                System.out.println(1);
+                return d;
+            });
     }
     
     /**
